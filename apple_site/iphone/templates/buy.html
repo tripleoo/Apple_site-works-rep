@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="product">
+
+        <div class="product-info">
+        <h1>К оплате {{iphone.price}}</h1>
+
+            <img src="/static/payment2.jpg" alt="payment">
+
+
+        </div>
+<h2>{{ iphone.name }} {{iphone.memory}} {{ iphone.color}}</h2>
+
+    </div>
+{% endblock %}

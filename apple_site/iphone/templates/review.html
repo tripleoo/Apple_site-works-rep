@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>На этой странице вы можете оставть фидбек о нашем сайте</h1>
+<form action="" method="post" >
+    {% csrf_token %}
+    {%for f in form%}
+    <p><label class="" for="{{f.id_for_label }}">{{f.label}}</label>{{f}}</p>
+    {% endfor %}
+    <p><button type="submit" class="btn-primary">Отправить отзыв</button></p>
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,9 @@
+<div id="sidebar">
+        <h3>Категории</h3>
+        <ul>
+        <li><a href="{% url 'glav' %}">Все товары</a></li>
+        {% for vid in vids %}
+            <li><a href="{% url 'filter_by_category' vid.slug %}">{{ vid.name }}</a></li>
+        {% endfor %}
+            <!-- Добавьте другие категории здесь -->
+        </ul>

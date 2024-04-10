@@ -1,0 +1,146 @@
+{% load static %}
+{% load iphone_tags%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apple Electronics Store</title>
+    <style>
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 140px;
+            background-color: #000;
+            color: #d9d9d9;
+            padding: 20px;
+            font-size: 26px;
+        }
+
+        #sidebar h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar li {
+            margin-bottom: 15px;
+        }
+
+        #sidebar a {
+            color: #FFFFFF;
+            text-decoration: none;
+
+        }
+
+        #sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            background-color: #000;
+            color: #333;
+            font-family: Tahoma, Geneva, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-left: 250px; /* учтите ширину сайдбара в левом отступе */
+        }
+
+        .header {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .logo {
+            float: center;
+        }
+
+        .logo img {
+            width: 55px;
+            height: 55px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 22px;
+        }
+
+        .product-card {
+            background-color: #333333;
+            color: #d9d9d9;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4%;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 4%;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        h2 a {
+            color: #d9d9d9;
+        }
+
+        .text {
+            font-size: 20px;
+            margin-top: 10px;
+            text-align: left;
+            color: #00cc66;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="/static/logo3.png" alt="Apple">
+        </a>
+   <div id="sidebar">
+    <h2>Apple </h2>
+    <ul>
+        <li><a href="{% url 'glav' %}">Все товары</a></li>
+        {% for vid in vids %}
+            <li><a href="{% url 'filter_by_category' vid.slug %}">{{ vid.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+    <div class="product-grid">
+        {% for i in iphones %}
+        <div class="product-card">
+            <img src="{{ i.image.url }}" alt="iPhone">
+            <h2><a href="{{ i.get_absolute_url }}">{{ i.name }}</a></h2>
+            <div class="product-price">{{ i.price }}</div>
+            {% for promo in i.promo.all %}
+            <div class="text">{{ promo.name }}</div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

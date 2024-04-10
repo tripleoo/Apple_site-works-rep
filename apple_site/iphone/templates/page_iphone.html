@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="product">
+        <img src="{{iphone.image.url}}" alt="iPhone">
+        <div class="product-info">
+            <h1>{{ iphone.name }}</h1>
+            <h3>Объем памяти: 256GB</h3>
+            <h3>Цвет: {{iphone.color}}</h3>
+            <h3>В наличии: Да</h3>
+            <h2>Цена: {{ iphone.price }}</h2>
+            <button onclick="location.href='buy/{{iphone.id}}'">Купить сейчас</button>
+                  </div>
+
+    </div>
+<img src="{{iphone.descrip.img_1.url}}" alt="iPhone">
+<img src="{{iphone.descrip.img_2.url}}" alt="iPhone">
+<h1>Здесь вы можете оставить комментарий к товару</h1>
+            <form action="" method="POST" >
+                {% csrf_token %}
+                {%for f in form%}
+                <p><label class="" for="{{f.id_for_label }}">{{f.label}}</label>{{f}}</p>
+                <input type="hidden" name="iphone_id" value="{{ iphone.id }}">
+                {% endfor %}
+                <p><button type="submit" class="btn-primary">Отправить отзыв</button></p>
+                {%for r in iphone.reviews.all%}
+                <div class="review-container">
+                    <h2>{{r.nikname}}</h2>
+                    <div class="stars">★★★★★</div>
+                    <p>{{r.rev}}</p>
+                </div>
+                {% endfor %}
+            </form>
+
+{% endblock %}
+
+

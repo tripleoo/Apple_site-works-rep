@@ -13,28 +13,6 @@ def base(request):
 def page_iphone(request):
     return render(request, 'page_iphone.html')
 
-#/
-def get_iphone_data(request, devise_slug):
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            try:
-                Review.objects.create(**form.cleaned_data)
-                return redirect('glav')
-            except:
-                form.add_error(None, 'Ошибка добавления отзыва')
-    else:
-        form = ReviewForm()
-
-    iphone = get_object_or_404(Iphone, slug=devise_slug)
-    reviews = Review.objects.all()
-    data = {
-        "iphone": iphone,
-        "form": form,
-        "reviews": reviews,
-        "descrip": iphone.descrip
-    }
-    return render(request, 'page_iphone.html', data)
 
 class PageIphone(DetailView):
     model = Iphone
@@ -60,12 +38,6 @@ class PageIphone(DetailView):
         context['form'] = form
         return self.render_to_response(context)
 
-def buy(request, id):
-    iphone = get_object_or_404(Iphone, pk=id)
-    data = {
-        "iphone": iphone,
-    }
-    return render(request, 'buy.html', data)
 
 class Buy(TemplateView):
     template_name = 'buy.html'
@@ -83,17 +55,6 @@ def test(request):
     return render(request, 'test.html', context=data)
 
 
-def glav(request):
-    iphones = Iphone.objects.all()
-    promo = Promo.objects.all()
-    vids = VidTovara.objects.all()
-    data = {
-        'iphones': iphones,
-        'promo': promo,
-        'vids': vids,
-
-    }
-    return render(request, 'glav.html', data)
 
 class Glav(ListView):
     model = Iphone
@@ -105,22 +66,6 @@ class Glav(ListView):
         'promo': promo,
         'vids': vids,
     }
-
-
-
-# def review(request, iphone_id):
-#     iphone = get_object_or_404(Iphone, id=iphone_id)
-#     if request.method == 'POST':
-#         form = ReviewForm(request.POST)
-#         if form.is_valid():
-#             review = form.save(commit=False)
-#             review.iphone = iphone
-#             review.save()
-#             return redirect('glav')
-#         else:
-#             form.add_error(None, 'Ошибка добавления отзыва')
-#     else:
-#         form = ReviewForm()
 
 
 class AddReview(View):
@@ -145,18 +90,6 @@ class AddReview(View):
             'form': form
         }
         return render(request, 'review.html', context=data)
-
-
-def filter_by_category(request, category_slug):
-    iphones = Iphone.objects.filter(vid__slug=category_slug)
-    promo = Promo.objects.all()
-    vids = VidTovara.objects.all()
-    data = {
-        'iphones': iphones,
-        'promo': promo,
-        'vids': vids,
-    }
-    return render(request, 'glav.html', data)
 
 class Filter_By_Category(ListView):
     template_name = 'glav.html'

@@ -1,31 +1,67 @@
+
 form {
-    max-width: 400px;
-    margin: 0 auto;
+    margin: 20px 0;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Прозрачный белый фон */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #1D1D1D;
+    max-width: 1200px; /* Максимальная ширина формы */
+    width: 100%; /* Занимает всю доступную ширину */
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
-/* Стили для заголовка формы */
-.form-title {
-    text-align: center;
-    color: white;
+/* Стили для каждого поля формы */
+form p {
+    margin-bottom: 15px;
 }
 
-/* Стили для кнопки */
-button[type="submit"] {
-    display: block;
+form label {
+    display: inline-block;
+    width: 120px; /* Ширина метки */
+    font-weight: bold;
+}
+
+form input[type="text"],
+form textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
-    background-color: #333; /* Цвет кнопки */
-    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #666666;
+
+
+}
+
+/* Стили для кнопки отправки */
+form button[type="submit"] {
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
-    background-color: #555; /* Цвет кнопки при наведении */
+/* Стили для контейнера отзывов */
+.review-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    background-color: #000000;
 }
+
+.review-container h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.stars {
+    color: gold;
+    font-size: 20px;
+}
+
+/* Дополнительные стили по вашему усмотрению */

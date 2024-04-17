@@ -65,3 +65,24 @@ form button[type="submit"] {
 }
 
 /* Дополнительные стили по вашему усмотрению */
+/* Стили для пагинатора !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+.page-num {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: #fff; /* белый цвет текста */
+    background-color: #333; /* темно-серый цвет фона */
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.page-num-selected {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: #333; /* темно-серый цвет текста */
+    background-color: #fff; /* белый цвет фона */
+    border-radius: 5px;
+    text-decoration: none;
+}

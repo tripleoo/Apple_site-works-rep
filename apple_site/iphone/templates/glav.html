@@ -125,6 +125,26 @@
             z-index: 9999; /* Убедитесь, что это значение больше, чем у других элементов */
             /* Дополнительные стили для вашей иконки, например, размер, цвет и т. д. */
         }
+                .page-num {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            color: #ffff; /* белый цвет текста */
+            background-color: #333; /* темно-серый цвет фона */
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .page-num-selected {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            color: #333; /* темно-серый цвет текста */
+            background-color: #fff; /* белый цвет фона */
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 
@@ -160,6 +180,14 @@
         </div>
         {% endfor %}
     </div>
-
+{% for p in page_obj.paginator.page_range %}
+		{% if page_obj.number == p%}
+		<li class="page-num page-num-selected">{{ p }}</li>
+		{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li class="page-num">
+            <a href="?page={{ p }}">{{p}}</a>
+        </li>
+		{% endif %}
+        {% endfor %}
 </body>
 </html>

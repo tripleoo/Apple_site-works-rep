@@ -20,6 +20,7 @@ class PageIphone(DetailView):
     slug_url_kwarg = 'devise_slug'
     context_object_name = 'iphone'
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ReviewForm()
@@ -57,6 +58,7 @@ def test(request):
 
 
 class Glav(ListView):
+    paginate_by = 4
     model = Iphone
     template_name = 'glav.html'
     promo = Promo.objects.all()
@@ -94,6 +96,7 @@ class AddReview(View):
 class Filter_By_Category(ListView):
     template_name = 'glav.html'
     context_object_name = 'iphones'
+    paginate_by = 4
 
     def get_queryset(self):
         category_slug = self.kwargs['category_slug']
